@@ -27,8 +27,41 @@ function getPlayerChoice(){
     }
 
 }
+function playRound(computerChoice,playerChoice){
+    if (playerChoice == "PAPER"){
+        if (computerChoice == "PAPER"){
+            console.log("Draw! " + playerChoice + " draws against " + computerChoice);
+        }
+        else if (computerChoice == "ROCK"){
+            console.log("You win! " + playerChoice + " wins against " + computerChoice);
+        }
+        else if (computerChoice == "SCISSOR"){
+            console.log("You lose! " + playerChoice + " loses against " + computerChoice);
+        }
+    }
+    if (playerChoice == "ROCK"){
+        if (computerChoice == "PAPER"){
+            console.log("You lose! " + playerChoice + " loses against " + computerChoice);
+        }
+        else if (computerChoice == "ROCK"){
+            console.log("Draw! " + playerChoice + " draws against " + computerChoice);
+        }
+        else if (computerChoice == "SCISSOR"){
+            console.log("You win! " + playerChoice + " wins against " + computerChoice);
+        }
+    }
+    if (playerChoice == "SCISSOR"){
+        if (computerChoice == "PAPER"){
+            console.log("You win! " + playerChoice + " wins against " + computerChoice);
+        }
+        else if (computerChoice == "ROCK"){
+            console.log("You lose! " + playerChoice + " loses against " + computerChoice);
+        }
+        else if (computerChoice == "SCISSOR"){
+            console.log("Draw! " + playerChoice + " draws against " + computerChoice);
+        }
+    }
+}
 let computerChoice = getComputerChoice();
 let playerChoice = getPlayerChoice();
-
-console.log(computerChoice)
-console.log(playerChoice)
+playRound(computerChoice,playerChoice);
