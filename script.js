@@ -8,11 +8,27 @@ Function playGame
     Run toUpperCase() for playerSelection
     Return string "You win! X beats Y", "You lose! X beats Y"
 */
-
 function getComputerChoice(){
-    let computerChoice = ["ROCK","PAPER","SCISSOR"];
-    const randomIndex = Math.floor(Math.random() * computerChoice.length);
-    return computerChoice[randomIndex];
+    let randomChoice = ["ROCK","PAPER","SCISSOR"];
+    const randomIndex = Math.floor(Math.random() * randomChoice.length);
+    return randomChoice[randomIndex];
+}
+function getPlayerChoice(){
+    let playerChoice = prompt ("Rock, paper or scissor?");
+    playerChoice=playerChoice.toUpperCase();
+    if (playerChoice =="PAPER" 
+    || playerChoice =="ROCK" 
+    || playerChoice =="SCISSOR"){
+        return playerChoice;
+    }
+    else {
+        alert ("Invalid choice")
+        return
+    }
+
 }
 let computerChoice = getComputerChoice();
+let playerChoice = getPlayerChoice();
+
 console.log(computerChoice)
+console.log(playerChoice)
