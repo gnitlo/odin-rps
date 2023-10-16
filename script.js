@@ -33,57 +33,71 @@ playScissor.addEventListener("click", () => {
 });
 
 function playRound(computerChoice,playerChoice){
+    if (roundCount>3){
+        document.querySelector('#inputRock').disabled = true;
+        document.querySelector('#inputPaper').disabled = true;
+        document.querySelector('#inputScissor').disabled = true;
+    
+    }
     const result = document.querySelector("#result")
     if (playerChoice == "PAPER"){
         if (computerChoice == "PAPER"){
             result.textContent=`Draw! ${playerChoice} draws against ${computerChoice}`;
             playerDraw++;
+            finishedRound();
         }
         else if (computerChoice == "ROCK"){
             result.textContent=`You win! ${playerChoice} wins against ${computerChoice}`;
             playerWin++;
+            finishedRound();
         }
         else if (computerChoice == "SCISSOR"){
             result.textContent=`You lose! ${playerChoice} loses against ${computerChoice}`;
             playerLoss++;
+            finishedRound();
         }
     }
     if (playerChoice == "ROCK"){
         if (computerChoice == "PAPER"){
             result.textContent=`You lose! ${playerChoice} loses against ${computerChoice}`;
             playerLoss++;
+            finishedRound();
         }
         else if (computerChoice == "ROCK"){
             result.textContent=`Draw! ${playerChoice} draws against ${computerChoice}`;
             playerDraw++;
+            finishedRound();
         }
         else if (computerChoice == "SCISSOR"){
             result.textContent=`You win! ${playerChoice} wins against ${computerChoice}`;
             playerWin++;
+            finishedRound();
         }
     }
     if (playerChoice == "SCISSOR"){
         if (computerChoice == "PAPER"){
             result.textContent=`You win! ${playerChoice} wins against ${computerChoice}`;
             playerWin++;
+            finishedRound();
         }
         else if (computerChoice == "ROCK"){
             result.textContent=`You lose! ${playerChoice} loses against ${computerChoice}`;
             playerLoss++;
+            finishedRound();
         }
         else if (computerChoice == "SCISSOR"){
             result.textContent=`Draw! ${playerChoice} draws against ${computerChoice}`;
             playerDraw++;
+            finishedRound();
         }
     }
 }
-let playerWin = 0;
-let playerLoss = 0;
-let playerDraw = 0;
-
-// for (let i = 0; i < 5; i++){
-//     let computerChoice = getComputerChoice();
-//     let playerChoice = getPlayerChoice();
-//     playRound(computerChoice,playerChoice);
-// }
-// console.log(`Game over! You won ${playerWin} times, you lost ${playerLoss} times and the round ended in a draw ${playerDraw} times.`)
+let roundCount=0;
+let playerWin=0;
+let playerLoss=0;
+let playerDraw=0;
+const score = document.querySelector("#score");
+function finishedRound(){
+    roundCount ++;
+score.textContent=`You have played ${roundCount}/5 rounds, you have won ${playerWin} times, lost ${playerLoss} times and draw ${playerDraw} times.`
+}
