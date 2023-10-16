@@ -3,20 +3,6 @@ function getComputerChoice(){
     const randomIndex = Math.floor(Math.random() * randomChoice.length);
     return randomChoice[randomIndex];
 }
-// function getPlayerChoice(){
-//     let playerChoice = prompt ("Rock, paper or scissor?");
-//     playerChoice=playerChoice.toUpperCase();
-//     if (playerChoice =="PAPER" 
-//     || playerChoice =="ROCK" 
-//     || playerChoice =="SCISSOR"){
-//         return playerChoice;
-//     }
-//     else {
-//         alert ("Invalid choice")
-//         playerLoss++;
-//         return
-//     }
-// }
 const playPaper = document.getElementById("inputPaper");
 playPaper.addEventListener("click", () => {
     playRound(getComputerChoice(),"PAPER");
@@ -33,60 +19,53 @@ playScissor.addEventListener("click", () => {
 });
 
 function playRound(computerChoice,playerChoice){
-    if (roundCount>3){
-        document.querySelector('#inputRock').disabled = true;
-        document.querySelector('#inputPaper').disabled = true;
-        document.querySelector('#inputScissor').disabled = true;
-    
-    }
-    const result = document.querySelector("#result")
     if (playerChoice == "PAPER"){
         if (computerChoice == "PAPER"){
-            result.textContent=`Draw! ${playerChoice} draws against ${computerChoice}`;
+            roundResult.textContent=`Draw! ${playerChoice} draws against ${computerChoice}`;
             playerDraw++;
             finishedRound();
         }
         else if (computerChoice == "ROCK"){
-            result.textContent=`You win! ${playerChoice} wins against ${computerChoice}`;
+            roundResult.textContent=`You win! ${playerChoice} wins against ${computerChoice}`;
             playerWin++;
             finishedRound();
         }
         else if (computerChoice == "SCISSOR"){
-            result.textContent=`You lose! ${playerChoice} loses against ${computerChoice}`;
+            roundResult.textContent=`You lose! ${playerChoice} loses against ${computerChoice}`;
             playerLoss++;
             finishedRound();
         }
     }
     if (playerChoice == "ROCK"){
         if (computerChoice == "PAPER"){
-            result.textContent=`You lose! ${playerChoice} loses against ${computerChoice}`;
+            roundResult.textContent=`You lose! ${playerChoice} loses against ${computerChoice}`;
             playerLoss++;
             finishedRound();
         }
         else if (computerChoice == "ROCK"){
-            result.textContent=`Draw! ${playerChoice} draws against ${computerChoice}`;
+            roundResult.textContent=`Draw! ${playerChoice} draws against ${computerChoice}`;
             playerDraw++;
             finishedRound();
         }
         else if (computerChoice == "SCISSOR"){
-            result.textContent=`You win! ${playerChoice} wins against ${computerChoice}`;
+            roundResult.textContent=`You win! ${playerChoice} wins against ${computerChoice}`;
             playerWin++;
             finishedRound();
         }
     }
     if (playerChoice == "SCISSOR"){
         if (computerChoice == "PAPER"){
-            result.textContent=`You win! ${playerChoice} wins against ${computerChoice}`;
+            roundResult.textContent=`You win! ${playerChoice} wins against ${computerChoice}`;
             playerWin++;
             finishedRound();
         }
         else if (computerChoice == "ROCK"){
-            result.textContent=`You lose! ${playerChoice} loses against ${computerChoice}`;
+            roundResult.textContent=`You lose! ${playerChoice} loses against ${computerChoice}`;
             playerLoss++;
             finishedRound();
         }
         else if (computerChoice == "SCISSOR"){
-            result.textContent=`Draw! ${playerChoice} draws against ${computerChoice}`;
+            roundResult.textContent=`Draw! ${playerChoice} draws against ${computerChoice}`;
             playerDraw++;
             finishedRound();
         }
@@ -97,7 +76,42 @@ let playerWin=0;
 let playerLoss=0;
 let playerDraw=0;
 const score = document.querySelector("#score");
+const roundResult = document.querySelector("#roundResult");
+const result = document.querySelector("#result")
+const reset = document.getElementById("reset");
+reset.addEventListener("click", () => {
+    resetGame();
+});
 function finishedRound(){
     roundCount ++;
-score.textContent=`You have played ${roundCount}/5 rounds, you have won ${playerWin} times, lost ${playerLoss} times and draw ${playerDraw} times.`
+    console.log(roundCount);
+    if (roundCount>4){
+        document.querySelector('#inputRock').disabled = true;
+        document.querySelector('#inputPaper').disabled = true;
+        document.querySelector('#inputScissor').disabled = true;
+    };
+    if (roundCount>4 && playerWin>playerLoss){
+        result.innerHTML=`GAME OVER, YOU WIN!`
+    }
+    if (roundCount>4 && playerWin<playerLoss){
+        result.innerHTML=`GAME OVER, YOU LOSE!`
+    }
+score.textContent=`You have played ${roundCount}/5 rounds, you have won ${playerWin} time(s), lost ${playerLoss} time(s) and the result was a draw ${playerDraw} time(s).`
+}
+function resetGame(){
+    if (confirm("Are you sure?") == true){
+        document.querySelector('#inputRock').disabled = false;
+        document.querySelector('#inputPaper').disabled = false;
+        document.querySelector('#inputScissor').disabled = false;
+        score.textContent=``;
+        roundResult.textContent=``;
+        result.innerHTML=``;
+        roundCount=0;
+        playerWin=0;
+        playerLoss=0;
+        playerDraw=0;
+    }
+    else {
+    }
+
 }
