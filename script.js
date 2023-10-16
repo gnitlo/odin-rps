@@ -1,8 +1,19 @@
+let roundCount=0;
+let playerWin=0;
+let playerLoss=0;
+let playerDraw=0;
+
+const score = document.querySelector("#score");
+const roundResult = document.querySelector("#roundResult");
+const result = document.querySelector("#result")
+const reset = document.getElementById("reset");
+
 function getComputerChoice(){
     let randomChoice = ["ROCK","PAPER","SCISSOR"];
     const randomIndex = Math.floor(Math.random() * randomChoice.length);
     return randomChoice[randomIndex];
 }
+
 const playPaper = document.getElementById("inputPaper");
 playPaper.addEventListener("click", () => {
     playRound(getComputerChoice(),"PAPER");
@@ -71,17 +82,11 @@ function playRound(computerChoice,playerChoice){
         }
     }
 }
-let roundCount=0;
-let playerWin=0;
-let playerLoss=0;
-let playerDraw=0;
-const score = document.querySelector("#score");
-const roundResult = document.querySelector("#roundResult");
-const result = document.querySelector("#result")
-const reset = document.getElementById("reset");
+
 reset.addEventListener("click", () => {
     resetGame();
 });
+
 function finishedRound(){
     roundCount ++;
     console.log(roundCount);
@@ -96,10 +101,11 @@ function finishedRound(){
     if (roundCount>4 && playerWin<playerLoss){
         result.innerHTML=`GAME OVER, YOU LOSE!`
     }
-score.textContent=`You have played ${roundCount}/5 rounds, you have won ${playerWin} time(s), lost ${playerLoss} time(s) and the result was a draw ${playerDraw} time(s).`
+    score.textContent=`You have played ${roundCount}/5 rounds, you have won ${playerWin} time(s), lost ${playerLoss} time(s) and the result was a draw ${playerDraw} time(s).`
 }
+
 function resetGame(){
-    if (confirm("Are you sure?") == true){
+    if (confirm("Are you sure you wish to reset?") == true){
         document.querySelector('#inputRock').disabled = false;
         document.querySelector('#inputPaper').disabled = false;
         document.querySelector('#inputScissor').disabled = false;
@@ -113,5 +119,4 @@ function resetGame(){
     }
     else {
     }
-
 }
