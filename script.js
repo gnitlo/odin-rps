@@ -64,9 +64,9 @@ function playRound(computerChoice,playerChoice){
 let playerWin = 0;
 let playerLoss = 0;
 let playerDraw = 0;
-for (let i = 0; i < 5; i++){
-    let computerChoice = getComputerChoice();
-    let playerChoice = getPlayerChoice();
-    playRound(computerChoice,playerChoice);
-}
+// for (let i = 0; i < 5; i++){
+//     let computerChoice = getComputerChoice();
+//     let playerChoice = getPlayerChoice();
+//     playRound(computerChoice,playerChoice);
+// }
 console.log(`Game over! You won ${playerWin} times, you lost ${playerLoss} times and the round ended in a draw ${playerDraw} times.`)
