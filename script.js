@@ -101,6 +101,9 @@ function finishedRound(){
     if (roundCount>4 && playerWin<playerLoss){
         result.innerHTML=`GAME OVER, YOU LOSE!`
     }
+    if (roundCount>4 && playerWin==playerLoss){
+        result.innerHTML=`GAME OVER, IT'S A DRAW!`
+    }
     score.textContent=`You have played ${roundCount}/5 rounds, you have won ${playerWin} time(s), lost ${playerLoss} time(s) and the result was a draw ${playerDraw} time(s).`
 }
 
